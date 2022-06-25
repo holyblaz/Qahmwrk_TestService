@@ -1,6 +1,7 @@
 package ru.netology.domain;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class TicketManager {
     private TicketRepository repository;
@@ -21,7 +22,7 @@ public class TicketManager {
         return repository.findAll();
     }
 
-    public Ticket[] findAll(String departureAirport, String arrivalAirport) {
+    public Ticket[] findAll(String departureAirport, String arrivalAirport, Comparator<Ticket> comparator) {
 
         Ticket[] result = new Ticket[0];
         for (Ticket ticket : repository.findAll()) {
@@ -35,6 +36,7 @@ public class TicketManager {
             }
         }
         Arrays.sort(result);
+        Arrays.sort(result, comparator);
         System.out.println(Arrays.toString(result));
         return result;
     }

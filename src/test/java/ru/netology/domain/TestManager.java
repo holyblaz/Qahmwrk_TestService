@@ -40,25 +40,25 @@ public class TestManager {
 
     @Test
     public void shouldShowSelectedAirTickets() {
-        assertArrayEquals(new Ticket[]{fifth, fourth, sixth}, manager.findAll("LAN", "ARK"));
+        assertArrayEquals(new Ticket[]{fifth, fourth, sixth}, manager.findAll("LAN", "ARK", new TicketByTravelTimeAscComparator()));
     }
 
     @Test
     public void shouldShowAirTicketsAndSort() {
-        assertArrayEquals(new Ticket[]{second, first}, manager.findAll("ARK", "SAD"));
+        assertArrayEquals(new Ticket[]{first, second}, manager.findAll("ARK", "SAD", new TicketByTravelTimeAscComparator()));
     }
 
     @Test
     public void shouldNotShowNothingBecauseEverythingFalse() {
-        assertArrayEquals(new Ticket[]{}, manager.findAll("GGG", "ZZZ"));
+        assertArrayEquals(new Ticket[]{}, manager.findAll("GGG", "ZZZ", new TicketByTravelTimeAscComparator()));
     }
 
     @Test
     public void shouldNotShowNothingBecauseOneTrueSecondFalse() {
-        assertArrayEquals(new Ticket[]{}, manager.findAll("ARK", "ZZZ"));
+        assertArrayEquals(new Ticket[]{}, manager.findAll("ARK", "ZZZ", new TicketByTravelTimeAscComparator()));
     }
     @Test
     public void shouldNotShowNothingBecauseOneFalseSecondTrue() {
-        assertArrayEquals(new Ticket[]{}, manager.findAll("ZZZ", "SAD"));
+        assertArrayEquals(new Ticket[]{}, manager.findAll("ZZZ", "SAD", new TicketByTravelTimeAscComparator()));
     }
 }
